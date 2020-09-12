@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/rose.jpeg?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/rose.jpeg?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/rose.jpeg?v=7.2.0">
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="微信网页授权简单来说就是，如果用户在微信客户端中访问第三方网页，公众号可以通过微信网页授权机制，来获取用户基本信息，进而实现业务逻辑。 具体而言，网页授权流程分为三步  引导用户进入授权页面同意授权，获取code 通过code换取网页授权access_token（与基础支持中的access_token不同） 通过网页授权access_token和openid获取用户基本信息（支持UnionID机制">
+<meta name="keywords" content="js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信网页开发">
+<meta property="og:url" content="https://www.zhangjiale.club/2019/09/08/微信网页开发/index.html">
+<meta property="og:site_name" content="ZJL | BLOG">
+<meta property="og:description" content="微信网页授权简单来说就是，如果用户在微信客户端中访问第三方网页，公众号可以通过微信网页授权机制，来获取用户基本信息，进而实现业务逻辑。 具体而言，网页授权流程分为三步  引导用户进入授权页面同意授权，获取code 通过code换取网页授权access_token（与基础支持中的access_token不同） 通过网页授权access_token和openid获取用户基本信息（支持UnionID机制">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-08-29T13:24:21.980Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信网页开发">
+<meta name="twitter:description" content="微信网页授权简单来说就是，如果用户在微信客户端中访问第三方网页，公众号可以通过微信网页授权机制，来获取用户基本信息，进而实现业务逻辑。 具体而言，网页授权流程分为三步  引导用户进入授权页面同意授权，获取code 通过code换取网页授权access_token（与基础支持中的access_token不同） 通过网页授权access_token和openid获取用户基本信息（支持UnionID机制">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="ZJL | BLOG" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://www.zhangjiale.club/2019/09/08/微信网页开发/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>微信网页开发 | ZJL | BLOG</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZJL | BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">Stay hungry stay foolish</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <a href="https://github.com/zhangjialegh" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.zhangjiale.club/2019/09/08/微信网页开发/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zjl">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZJL | BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">微信网页开发
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-08 07:01:00" itemprop="dateCreated datePublished" datetime="2019-09-08T07:01:00+08:00">2019-09-08</time>
+            </span>
+          
+
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+                 阅读次数： 
+                <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+              </span>
+            </span>
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="微信网页授权"><a href="#微信网页授权" class="headerlink" title="微信网页授权"></a>微信网页授权</h2><p>简单来说就是，如果用户在微信客户端中访问第三方网页，公众号可以通过微信网页授权机制，来获取用户基本信息，进而实现业务逻辑。</p>
+<p><strong>具体而言，网页授权流程分为三步</strong></p>
+<ol>
+<li>引导用户进入授权页面同意授权，获取code</li>
+<li>通过code换取网页授权access_token（与基础支持中的access_token不同）</li>
+<li>通过网页授权access_token和openid获取用户基本信息（支持UnionID机制）</li>
+</ol>
+<h3 id="授权流程"><a href="#授权流程" class="headerlink" title="授权流程"></a>授权流程</h3><blockquote>
+<p>测试号申请 <a href="https://mp.weixin.qq.com/debug/cgi-bin/sandboxinfo?action=showinfo&amp;t=sandbox/index" target="_blank" rel="noopener">https://mp.weixin.qq.com/debug/cgi-bin/sandboxinfo?action=showinfo&amp;t=sandbox/index</a></p>
+</blockquote>
+<h4 id="第一步：用户同意授权，获取code"><a href="#第一步：用户同意授权，获取code" class="headerlink" title="第一步：用户同意授权，获取code"></a>第一步：用户同意授权，获取code</h4><p>(一) 公众平台网页授权<br>在确保微信公众账号拥有授权作用域（scope参数）的权限的前提下（服务号获得高级接口后，默认拥有scope参数中的snsapi_base和snsapi_userinfo），引导关注者打开如下页面：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> Href: https:<span class="comment">//open.weixin.qq.com/connect/oauth2/authorize</span></span><br><span class="line"> </span><br><span class="line"> parasm: &#123;</span><br><span class="line">   appid: APPID, <span class="comment">// 公众号的唯一标识</span></span><br><span class="line">   redirect_uri: REDIRECT_URI, <span class="comment">//需要公众号授权作用域相同，授权后重定向的回调链接地址， 请使用 urlEncode 对链接进行处理</span></span><br><span class="line">   response_type: <span class="string">'code'</span>, <span class="comment">//返回类型</span></span><br><span class="line">   scope: SCOPE, <span class="comment">// 应用授权作用域，snsapi_base （不弹出授权页面，直接跳转，只能获取用户openid），snsapi_userinfo （弹出授权页面，可通过openid拿到昵称、性别、所在地。并且， 即使在未关注的情况下，只要用户授权，也能获取其信息 ）</span></span><br><span class="line">   state: STATE, <span class="comment">// 重定向后会带上state参数，开发者可以填写a-zA-Z0-9的参数值，最多128字节</span></span><br><span class="line">   #wechat_redirect //无论直接打开还是做页面302重定向时候，必须带此参数</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment">// 若提示“该链接无法访问”，请检查参数是否填写错误，是否拥有scope参数对应的授权作用域权限。</span></span><br></pre></td></tr></table></figure></p>
+<p>尤其注意：由于授权操作安全等级较高，所以在发起授权请求时，微信会对授权链接做正则强匹配校验，如果链接的参数顺序不对，授权页面将无法正常访问</p>
+<blockquote>
+<p><strong>注意：</strong> </p>
+<ol>
+<li>由于授权操作安全等级较高，所以在发起授权请求时，微信会对授权链接做正则强匹配校验，如果链接的参数顺序不对，授权页面将无法正常访问;</li>
+<li>对于已关注公众号的用户，如果用户从公众号的会话或者自定义菜单进入本公众号的网页授权页，即使是scope为snsapi_userinfo，也是静默授权，用户无感知。</li>
+</ol>
+</blockquote>
+<p>(二) 开放平台网页扫码授权<br> （1）跳转微信授权域授权<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> Href: https:<span class="comment">//open.weixin.qq.com/connect/qrconnect</span></span><br><span class="line"> </span><br><span class="line"> parasm: &#123;</span><br><span class="line">   appid: APPID, <span class="comment">// 公众号的唯一标识</span></span><br><span class="line">   redirect_uri: REDIRECT_URI, <span class="comment">//需要公众号授权作用域相同，授权后重定向的回调链接地址， 请使用 urlEncode 对链接进行处理</span></span><br><span class="line">   response_type: <span class="string">'code'</span>, <span class="comment">//返回类型</span></span><br><span class="line">   scope: SCOPE, <span class="comment">// 应用授权作用域，拥有多个作用域用逗号（,）分隔，网页应用目前仅填写snsapi_login</span></span><br><span class="line">   state: STATE, <span class="comment">// 重定向后会带上state参数，开发者可以填写a-zA-Z0-9的参数值，最多128字节</span></span><br><span class="line">   #wechat_redirect //无论直接打开还是做页面302重定向时候，必须带此参数</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment">//若提示“该链接无法访问”，请检查参数是否填写错误，如redirect_uri的域名与审核时填写的授权域名不一致或scope不为snsapi_login。</span></span><br></pre></td></tr></table></figure></p>
+<p>（2）授权码内嵌到自己页面授权<br>步骤1：在页面中先引入如下JS文件（支持https）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="comment">//res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js</span></span><br></pre></td></tr></table></figure></p>
+<p>步骤2：在需要使用微信登录的地方实例以下JS对象：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = <span class="keyword">new</span> WxLogin(&#123;</span><br><span class="line">self_redirect: <span class="literal">false</span>, <span class="comment">// true：手机点击确认登录后可以在 iframe 内跳转到 redirect_uri，false：手机点击确认登录后可以在 top window 跳转到 redirect_uri。默认为 false。</span></span><br><span class="line">id:<span class="string">"login_container"</span>,  <span class="comment">// 第三方页面显示二维码的容器id</span></span><br><span class="line">appid: <span class="string">""</span>,  <span class="comment">// 应用唯一标识，在微信开放平台提交应用审核通过后获得</span></span><br><span class="line">scope: <span class="string">""</span>,  <span class="comment">// 应用授权作用域，拥有多个作用域用逗号（,）分隔，网页应用目前仅填写snsapi_login即可</span></span><br><span class="line">redirect_uri: <span class="string">""</span>, <span class="comment">// 重定向地址，需要进行UrlEncode</span></span><br><span class="line">state: <span class="string">""</span>, <span class="comment">// 用于保持请求和回调的状态，授权请求后原样带回给第三方。该参数可用于防止csrf攻击（跨站请求伪造攻击），建议第三方带上该参数，可设置为简单的随机数加session进行校验</span></span><br><span class="line">style: <span class="string">""</span>, <span class="comment">// 提供"black"、"white"可选，默认为黑色文字描述。</span></span><br><span class="line">href: <span class="string">""</span> <span class="comment">// 自定义样式链接，第三方可根据实际需求覆盖默认样式。</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h4 id="第二步：通过code换取网页授权access-token"><a href="#第二步：通过code换取网页授权access-token" class="headerlink" title="第二步：通过code换取网页授权access_token"></a>第二步：通过code换取网页授权access_token</h4><p>第一步用户授权后会跳转至redirect_uri/?code=CODE&amp;state=STATE</p>
+<blockquote>
+<p><strong>注意：</strong><br>code作为换取access_token的票据，每次用户授权带上的code将不一样，code只能使用一次，5分钟未被使用自动过期</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">GET: https:<span class="comment">//api.weixin.qq.com/sns/oauth2/access_token</span></span><br><span class="line"></span><br><span class="line">params: &#123;</span><br><span class="line">  appid: APPID, <span class="comment">// 公众号的唯一标识</span></span><br><span class="line">  secret: SECRET, <span class="comment">// 公众号的appsecret</span></span><br><span class="line">  code: CODE, <span class="comment">// 填写第一步获取的code参数</span></span><br><span class="line">  grant_type: <span class="string">'authorization_code'</span> <span class="comment">//填写为authorization_code</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回的JSON结果</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"access_token"</span>:<span class="string">"ACCESS_TOKEN"</span>, <span class="comment">// 网页授权接口调用凭证,注意：此access_token与基础支持的access_token不同</span></span><br><span class="line">  <span class="string">"expires_in"</span>:<span class="number">7200</span>, <span class="comment">//	access_token接口调用凭证超时时间，单位（秒）</span></span><br><span class="line">  <span class="string">"refresh_token"</span>:<span class="string">"REFRESH_TOKEN"</span>, <span class="comment">//用户刷新access_token</span></span><br><span class="line">  <span class="string">"openid"</span>:<span class="string">"OPENID"</span>, <span class="comment">//用户唯一标识，请注意，在未关注公众号时，用户访问公众号的网页，也会产生一个用户和公众号唯一的OpenID</span></span><br><span class="line">  <span class="string">"scope"</span>:<span class="string">"SCOPE"</span>  <span class="comment">//用户授权的作用域，使用逗号（,）分隔</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"><span class="comment">// 由于公众号的secret和获取到的access_token安全级别都非常高，必须只保存在服务器，不允许传给客户端。后续刷新access_token、通过access_token获取用户信息等步骤，也必须从服务器发起。</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意：</strong><br>由于access_token拥有较短的有效期，当access_token超时后，可以使用refresh_token进行刷新，refresh_token有效期为30天，当refresh_token失效之后，需要用户重新授权。</p>
+</blockquote>
+<p><strong>校验授权凭证（access_token）是否有效</strong><br><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">GET:</span> https:<span class="comment">//api.weixin.qq.com/sns/auth</span></span><br><span class="line"><span class="symbol">params:</span> &#123;</span><br><span class="line"><span class="symbol">  openid:</span> OPENID, <span class="comment">// 用户的唯一标识</span></span><br><span class="line"><span class="symbol">  access_token:</span> ACCESS_TOKEN <span class="comment">// 网页授权接口调用凭证,注意：此access_token与基础支持的access_token不同</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回JOSN结果</span></span><br><span class="line">&#123; <span class="string">"errcode"</span>:<span class="number">0</span>,<span class="string">"errmsg"</span>:<span class="string">"ok"</span>&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>刷新授权凭证（access_token）</strong><br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">GET:</span> <span class="string">https:</span><span class="comment">//api.weixin.qq.com/sns/oauth2/refresh_token</span></span><br><span class="line"><span class="string">params:</span> &#123;</span><br><span class="line"><span class="symbol">  appid:</span> APPID,</span><br><span class="line"><span class="symbol">  grant_type:</span> <span class="string">'refresh_token'</span>,</span><br><span class="line"><span class="symbol">  refresh_token:</span> REFRESH_TOKEN</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回的JSON结果</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"access_token"</span>:<span class="string">"ACCESS_TOKEN"</span>, <span class="comment">// 网页授权接口调用凭证,注意：此access_token与基础支持的access_token不同</span></span><br><span class="line">  <span class="string">"expires_in"</span>:<span class="number">7200</span>, <span class="comment">//	access_token接口调用凭证超时时间，单位（秒）</span></span><br><span class="line">  <span class="string">"refresh_token"</span>:<span class="string">"REFRESH_TOKEN"</span>, <span class="comment">//用户刷新access_token</span></span><br><span class="line">  <span class="string">"openid"</span>:<span class="string">"OPENID"</span>, <span class="comment">//用户唯一标识，请注意，在未关注公众号时，用户访问公众号的网页，也会产生一个用户和公众号唯一的OpenID</span></span><br><span class="line">  <span class="string">"scope"</span>:<span class="string">"SCOPE"</span>  <span class="comment">//用户授权的作用域，使用逗号（,）分隔</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="第三步：拉取用户信息-需scope为-snsapi-userinfo"><a href="#第三步：拉取用户信息-需scope为-snsapi-userinfo" class="headerlink" title="第三步：拉取用户信息(需scope为 snsapi_userinfo)"></a>第三步：拉取用户信息(需scope为 snsapi_userinfo)</h4><p>如果网页授权作用域为snsapi_userinfo，则此时开发者可以通过access_token和openid拉取用户信息了。<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">GET:</span> <span class="string">https:</span><span class="comment">//api.weixin.qq.com/sns/userinfo</span></span><br><span class="line"><span class="string">params:</span> &#123;</span><br><span class="line"><span class="symbol">  access_token:</span> ACCESS_TOKEN,</span><br><span class="line"><span class="symbol">  openid:</span> OPENID,</span><br><span class="line"><span class="symbol">  lang:</span> <span class="string">'zh_CN'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回JSON数据包</span></span><br><span class="line">&#123;   </span><br><span class="line">  <span class="string">"openid"</span>:<span class="string">"OPENID"</span>, <span class="comment">//用户的唯一标识</span></span><br><span class="line">  <span class="string">"nickname"</span>: NICKNAME,  <span class="comment">//用户昵称</span></span><br><span class="line">  <span class="string">"sex"</span>:<span class="string">"1"</span>,  <span class="comment">//用户的性别，值为1时是男性，值为2时是女性，值为0时是未知</span></span><br><span class="line">  <span class="string">"province"</span>:<span class="string">"PROVINCE"</span> <span class="comment">//用户个人资料填写的省份</span></span><br><span class="line">  <span class="string">"city"</span>:<span class="string">"CITY"</span>, <span class="comment">//普通用户个人资料填写的城市</span></span><br><span class="line">  <span class="string">"country"</span>:<span class="string">"COUNTRY"</span>, <span class="comment">//国家，如中国为CN</span></span><br><span class="line">  <span class="string">"headimgurl"</span>: <span class="string">"HEADIMG_URL"</span>, <span class="comment">//用户头像，最后一个数值代表正方形头像大小（有0、46、64、96、132数值可选，0代表640*640正方形头像），用户没有头像时该项为空。若用户更换头像，原有头像URL将失效。</span></span><br><span class="line">  <span class="string">"privilege"</span>:[ <span class="string">"PRIVILEGE1"</span> <span class="string">"PRIVILEGE2"</span>],  <span class="comment">//	用户特权信息，json 数组，如微信沃卡用户为（chinaunicom）</span></span><br><span class="line">  <span class="string">"unionid"</span>: <span class="string">"o6_bmasdasdsad6_2sgVt7hMZOPfL"</span>  <span class="comment">// 只有在用户将公众号绑定到微信开放平台帐号后，才会出现该字段。(https://open.weixin.qq.com/cgi-bin/index?t=home/index&amp;lang=zh_CN)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="需要知道"><a href="#需要知道" class="headerlink" title="需要知道"></a>需要知道</h3><blockquote>
+<p>关于网页授权access_token和普通access_token的区别</p>
+</blockquote>
+<p>1、微信网页授权是通过OAuth2.0机制实现的，在用户授权给公众号后，公众号可以获取到一个网页授权特有的接口调用凭证（网页授权access_token），通过网页授权access_token可以进行授权后接口调用，如获取用户基本信息；</p>
+<p>2、其他微信接口，需要通过基础支持中的“获取access_token”接口来获取到的普通access_token调用。</p>
+<blockquote>
+<p>关于UnionID机制</p>
+</blockquote>
+<p>1、请注意，网页授权获取用户基本信息也遵循UnionID机制。即如果开发者有在多个公众号，或在公众号、移动应用之间统一用户帐号的需求，需要前往微信开放平台（open.weixin.qq.com）绑定公众号后，才可利用UnionID机制来满足上述需求。</p>
+<p>2、UnionID机制的作用说明：如果开发者拥有多个移动应用、网站应用和公众帐号，可通过获取用户基本信息中的unionid来区分用户的唯一性，因为同一用户，对同一个微信开放平台下的不同应用（移动应用、网站应用和公众帐号），unionid是相同的。</p>
+<blockquote>
+<p>关于特殊场景下的静默授权</p>
+</blockquote>
+<p>1、上面已经提到，对于以snsapi_base为scope的网页授权，就静默授权的，用户无感知；<br>2、对于已关注公众号的用户，如果用户从公众号的会话或者自定义菜单进入本公众号的网页授权页，即使是scope为snsapi_userinfo，也是静默授权，用户无感知。</p>
+<hr>
+<h2 id="JSSDk功能简介"><a href="#JSSDk功能简介" class="headerlink" title="JSSDk功能简介"></a>JSSDk功能简介</h2><p><a href="https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html#0" target="_blank" rel="noopener">jssdk微信官方文档</a></p>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>微信JS-SDK是微信公众平台 面向网页开发者提供的基于微信内的网页开发工具包。</p>
+<p>通过使用微信JS-SDK，网页开发者可借助微信高效地使用拍照、选图、语音、位置等手机系统的能力，同时可以直接使用微信分享、扫一扫、卡券、支付等微信特有的能力，为微信用户提供更优质的网页体验。</p>
+<h3 id="JSSDK使用步骤"><a href="#JSSDK使用步骤" class="headerlink" title="JSSDK使用步骤"></a>JSSDK使用步骤</h3><h4 id="步骤一：绑定域名"><a href="#步骤一：绑定域名" class="headerlink" title="步骤一：绑定域名"></a>步骤一：绑定域名</h4><p>先登录<a href="https://mp.weixin.qq.com" target="_blank" rel="noopener">微信公众平台</a>进入”公众号设置–&gt;功能设置”里填写“JS接口安全域名”。</p>
+<h4 id="步骤二：引入JS文件"><a href="#步骤二：引入JS文件" class="headerlink" title="步骤二：引入JS文件"></a>步骤二：引入JS文件</h4><p>在需要调用JS接口的页面引入如下JS文件，（支持https）：<code>http://res.wx.qq.com/open/js/jweixin-1.4.0.js</code></p>
+<p>如需进一步提升服务稳定性，当上述资源不可访问时，可改访问：<code>http://res2.wx.qq.com/open/js/jweixin-1.4.0.js</code> （支持https）。</p>
+<p>备注：支持使用 AMD/CMD 标准模块加载方法加载</p>
+<h4 id="步骤三：通过config接口注入权限验证配置"><a href="#步骤三：通过config接口注入权限验证配置" class="headerlink" title="步骤三：通过config接口注入权限验证配置"></a>步骤三：通过config接口注入权限验证配置</h4><p>所有需要使用JS-SDK的页面必须先注入配置信息，否则将无法调用（同一个url仅需调用一次，对于变化url的SPA的web app可在每次url变化时进行调用,目前Android微信客户端不支持pushState的H5新特性，所以使用pushState来实现web app的页面会导致签名失败，此问题会在Android6.2中修复）。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">wx.config(&#123;</span><br><span class="line">  debug: <span class="literal">true</span>, <span class="comment">// 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。</span></span><br><span class="line">  appId: <span class="string">''</span>, <span class="comment">// 必填，公众号的唯一标识</span></span><br><span class="line">  timestamp: , <span class="comment">// 必填，生成签名的时间戳</span></span><br><span class="line">  nonceStr: <span class="string">''</span>, <span class="comment">// 必填，生成签名的随机串</span></span><br><span class="line">  signature: <span class="string">''</span>,<span class="comment">// 必填，签名</span></span><br><span class="line">  jsApiList: [] <span class="comment">// 必填，需要使用的JS接口列表</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h4 id="步骤四：通过ready接口处理成功验证"><a href="#步骤四：通过ready接口处理成功验证" class="headerlink" title="步骤四：通过ready接口处理成功验证"></a>步骤四：通过ready接口处理成功验证</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wx.ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">// config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="步骤五：通过error接口处理失败验证"><a href="#步骤五：通过error接口处理失败验证" class="headerlink" title="步骤五：通过error接口处理失败验证"></a>步骤五：通过error接口处理失败验证</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wx.error(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>接口调用说明</p>
+</blockquote>
+<p>所有接口通过wx对象(也可使用jWeixin对象)来调用，参数是一个对象，除了每个接口本身需要传的参数之外，还有以下通用参数：</p>
+<ol>
+<li>success：接口调用成功时执行的回调函数。</li>
+<li>fail：接口调用失败时执行的回调函数。</li>
+<li>complete：接口调用完成时执行的回调函数，无论成功或失败都会执行。</li>
+<li>cancel：用户点击取消时的回调函数，仅部分有用户取消操作的api才会用到。</li>
+<li>trigger: 监听Menu中的按钮点击时触发的方法，该方法仅支持Menu中的相关接口。</li>
+</ol>
+<h3 id="常用接口举例"><a href="#常用接口举例" class="headerlink" title="常用接口举例"></a>常用接口举例</h3><h4 id="自定义“分享给朋友”及“分享到QQ”按钮的分享内容（1-4-0）"><a href="#自定义“分享给朋友”及“分享到QQ”按钮的分享内容（1-4-0）" class="headerlink" title="自定义“分享给朋友”及“分享到QQ”按钮的分享内容（1.4.0）"></a><strong>自定义“分享给朋友”及“分享到QQ”按钮的分享内容（1.4.0）</strong></h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">wx</span><span class="selector-class">.ready</span>(function () &#123;   <span class="comment">//需在用户可能点击分享按钮前就先调用</span></span><br><span class="line">  <span class="selector-tag">wx</span><span class="selector-class">.updateAppMessageShareData</span>(&#123; </span><br><span class="line">    <span class="attribute">title</span>: <span class="string">''</span>, <span class="comment">// 分享标题</span></span><br><span class="line">    <span class="attribute">desc</span>: <span class="string">''</span>, <span class="comment">// 分享描述</span></span><br><span class="line">    <span class="attribute">link</span>: <span class="string">''</span>, <span class="comment">// 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致</span></span><br><span class="line">    <span class="attribute">imgUrl</span>: <span class="string">''</span>, <span class="comment">// 分享图标</span></span><br><span class="line">    <span class="attribute">success</span>: function () &#123;</span><br><span class="line">      <span class="comment">// 设置成功</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="自定义“分享到朋友圈”及“分享到QQ空间”按钮的分享内容（1-4-0）"><a href="#自定义“分享到朋友圈”及“分享到QQ空间”按钮的分享内容（1-4-0）" class="headerlink" title="自定义“分享到朋友圈”及“分享到QQ空间”按钮的分享内容（1.4.0）"></a><strong>自定义“分享到朋友圈”及“分享到QQ空间”按钮的分享内容（1.4.0）</strong></h4><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">wx.ready(<span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;      <span class="comment">//需在用户可能点击分享按钮前就先调用</span></span><br><span class="line">  wx.updateTimelineShareData(&#123; </span><br><span class="line">    title: <span class="string">''</span>, <span class="comment">// 分享标题</span></span><br><span class="line">    link: <span class="string">''</span>, <span class="comment">// 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致</span></span><br><span class="line">    imgUrl: <span class="string">''</span>, <span class="comment">// 分享图标</span></span><br><span class="line">    success: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="comment">// 设置成功</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="操作界面"><a href="#操作界面" class="headerlink" title="操作界面"></a><strong>操作界面</strong></h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">1</span>. 关闭当前网页窗口接口</span><br><span class="line"><span class="selector-tag">wx</span><span class="selector-class">.closeWindow</span>();</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">2</span>. 批量隐藏功能按钮接口</span><br><span class="line"><span class="selector-tag">wx</span><span class="selector-class">.hideMenuItems</span>(&#123;</span><br><span class="line">  <span class="attribute">menuList</span>: [] <span class="comment">// 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">3</span>. 批量显示功能按钮接口</span><br><span class="line"><span class="selector-tag">wx</span><span class="selector-class">.showMenuItems</span>(&#123;</span><br><span class="line">  <span class="attribute">menuList</span>: [] <span class="comment">// 要显示的菜单项，所有menu项见附录3</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">4</span>.隐藏所有非基础按钮接口</span><br><span class="line"><span class="selector-tag">wx</span><span class="selector-class">.hideAllNonBaseMenuItem</span>();</span><br><span class="line"><span class="comment">// “基本类”按钮详见附录3</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">5</span>.显示所有功能按钮接口</span><br><span class="line"><span class="selector-tag">wx</span><span class="selector-class">.showAllNonBaseMenuItem</span>();</span><br></pre></td></tr></table></figure>
+<h2 id="微信支付"><a href="#微信支付" class="headerlink" title="微信支付"></a>微信支付</h2><p><a href="https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=7_3" target="_blank" rel="noopener">JSAPI支付</a>：用户通过微信扫码、关注公众号等方式进入商家H5页面，并在微信内调用JSSDK完成支付</p>
+<p><a href="https://pay.weixin.qq.com/wiki/doc/api/H5.php?chapter=15_4" target="_blank" rel="noopener">H5支付</a>：用户在微信以外的手机浏览器请求微信支付的场景唤起微信支付</p>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><ol>
+<li>基本类</li>
+</ol>
+<ul>
+<li>举报: “menuItem:exposeArticle”</li>
+<li>调整字体: “menuItem:setFont”</li>
+<li>日间模式: “menuItem:dayMode”</li>
+<li>夜间模式: “menuItem:nightMode”</li>
+<li>刷新: “menuItem:refresh”</li>
+<li>查看公众号（已添加）: “menuItem:profile”</li>
+<li>查看公众号（未添加）: “menuItem:addContact”</li>
+</ul>
+<ol start="2">
+<li>传播类</li>
+</ol>
+<ul>
+<li>发送给朋友: “menuItem:share:appMessage”</li>
+<li>分享到朋友圈: “menuItem:share:timeline”</li>
+<li>分享到QQ: “menuItem:share:qq”</li>
+<li>分享到Weibo: “menuItem:share:weiboApp”</li>
+<li>收藏: “menuItem:favorite”</li>
+<li>分享到FB: “menuItem:share:facebook”</li>
+<li>分享到 QQ 空间/menuItem:share:QZone</li>
+</ul>
+<ol start="3">
+<li>保护类</li>
+</ol>
+<ul>
+<li>编辑标签: “menuItem:editTag”</li>
+<li>删除: “menuItem:delete”</li>
+<li>复制链接: “menuItem:copyUrl”</li>
+<li>原网页: “menuItem:originPage”</li>
+<li>阅读模式: “menuItem:readMode”</li>
+<li>在QQ浏览器中打开: “menuItem:openWithQQBrowser”</li>
+<li>在Safari中打开: “menuItem:openWithSafari”</li>
+<li>邮件: “menuItem:share:email”</li>
+<li>一些特殊公众号: “menuItem:share:brand”</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag"><i class="fa fa-tag"></i> js</a>
+          
+        </div>
+      
+
+      
+        <div>
+          <div class="-mob-share-ui-button -mob-share-open" style="
+    width: 100px;
+    height: 14px;
+    border-radius: 0px;
+    font-size: 14px;
+    line-height: 1;
+    margin: 15px auto 0;
+    border: 2px solid #000;
+    color: #000;
+    background: #fff;
+    padding: 7px;
+    text-align: center;
+">分享</div>
+<div class="-mob-share-ui" style="display: none">
+    <ul class="-mob-share-list">
+        <li class="-mob-share-weixin"><p>微信</p></li>
+        <li class="-mob-share-youdao"><p>有道云笔记</p></li>
+        <li class="-mob-share-douban"><p>豆瓣</p></li>
+        <li class="-mob-share-weibo"><p>新浪微博</p></li>
+        <li class="-mob-share-qzone"><p>QQ空间</p></li>
+        <li class="-mob-share-qq"><p>QQ好友</p></li>
+    </ul>
+    <div class="-mob-share-close">取消</div>
+</div>
+<div class="-mob-share-ui-bg"></div>
+<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=2ba0343803f7c"></script>
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/10/Zlib/" rel="next" title="Zlib">
+                <i class="fa fa-chevron-left"></i> Zlib
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  <div>
+    
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------ 本文结束------</div>
+    
+</div>
+    
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpeg" alt="zjl">
+            
+              <p class="site-author-name" itemprop="name">zjl</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/zhangjialegh" title="GitHub &rarr; https://github.com/zhangjialegh" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/bestzjl" title="Weibo &rarr; https://weibo.com/bestzjl" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#微信网页授权"><span class="nav-number">1.</span> <span class="nav-text">微信网页授权</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#授权流程"><span class="nav-number">1.1.</span> <span class="nav-text">授权流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一步：用户同意授权，获取code"><span class="nav-number">1.1.1.</span> <span class="nav-text">第一步：用户同意授权，获取code</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二步：通过code换取网页授权access-token"><span class="nav-number">1.1.2.</span> <span class="nav-text">第二步：通过code换取网页授权access_token</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三步：拉取用户信息-需scope为-snsapi-userinfo"><span class="nav-number">1.1.3.</span> <span class="nav-text">第三步：拉取用户信息(需scope为 snsapi_userinfo)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需要知道"><span class="nav-number">1.2.</span> <span class="nav-text">需要知道</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSSDk功能简介"><span class="nav-number">2.</span> <span class="nav-text">JSSDk功能简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">2.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSSDK使用步骤"><span class="nav-number">2.2.</span> <span class="nav-text">JSSDK使用步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#步骤一：绑定域名"><span class="nav-number">2.2.1.</span> <span class="nav-text">步骤一：绑定域名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#步骤二：引入JS文件"><span class="nav-number">2.2.2.</span> <span class="nav-text">步骤二：引入JS文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#步骤三：通过config接口注入权限验证配置"><span class="nav-number">2.2.3.</span> <span class="nav-text">步骤三：通过config接口注入权限验证配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#步骤四：通过ready接口处理成功验证"><span class="nav-number">2.2.4.</span> <span class="nav-text">步骤四：通过ready接口处理成功验证</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#步骤五：通过error接口处理失败验证"><span class="nav-number">2.2.5.</span> <span class="nav-text">步骤五：通过error接口处理失败验证</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用接口举例"><span class="nav-number">2.3.</span> <span class="nav-text">常用接口举例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义“分享给朋友”及“分享到QQ”按钮的分享内容（1-4-0）"><span class="nav-number">2.3.1.</span> <span class="nav-text">自定义“分享给朋友”及“分享到QQ”按钮的分享内容（1.4.0）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义“分享到朋友圈”及“分享到QQ空间”按钮的分享内容（1-4-0）"><span class="nav-number">2.3.2.</span> <span class="nav-text">自定义“分享到朋友圈”及“分享到QQ空间”按钮的分享内容（1.4.0）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#操作界面"><span class="nav-number">2.3.3.</span> <span class="nav-text">操作界面</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微信支付"><span class="nav-number">3.</span> <span class="nav-text">微信支付</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附录"><span class="nav-number">4.</span> <span class="nav-text">附录</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">津ICP备19010446号 </a>&copy; 2016 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zjl</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'ac98aa73e7ed1bd895b4',
+    clientSecret: 'f1d8b771093705b6be233834ae27965a0d49eca2',
+    repo: 'blog-comments',
+    owner: 'zhangjialegh',
+    admin: ['zhangjialegh'],
+    id: md5(location.pathname),
+    
+      language: window.navigator.language || window.navigator.userLanguage,
+    
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

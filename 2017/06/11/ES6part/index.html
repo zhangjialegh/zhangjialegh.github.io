@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/rose.jpeg?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/rose.jpeg?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/rose.jpeg?v=7.2.0">
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Set 集合的基本概念：集合是由一组无序且唯一（即不能重复）的项组成的。这个数据结构使用了与有限集合相同的数学概念，应用在计算机的数据结构中。 特点：key 和 value相同，没有重复的value ES6提供了数据结构Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。  1. 创建一个Setconst s = new Set([1,2,3,3,{a:1}]); console.log(">
+<meta name="keywords" content="js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ECMAScript 6">
+<meta property="og:url" content="https://www.zhangjiale.club/2017/06/11/ES6part/index.html">
+<meta property="og:site_name" content="ZJL | BLOG">
+<meta property="og:description" content="Set 集合的基本概念：集合是由一组无序且唯一（即不能重复）的项组成的。这个数据结构使用了与有限集合相同的数学概念，应用在计算机的数据结构中。 特点：key 和 value相同，没有重复的value ES6提供了数据结构Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。  1. 创建一个Setconst s = new Set([1,2,3,3,{a:1}]); console.log(">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-08-29T13:24:21.977Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ECMAScript 6">
+<meta name="twitter:description" content="Set 集合的基本概念：集合是由一组无序且唯一（即不能重复）的项组成的。这个数据结构使用了与有限集合相同的数学概念，应用在计算机的数据结构中。 特点：key 和 value相同，没有重复的value ES6提供了数据结构Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。  1. 创建一个Setconst s = new Set([1,2,3,3,{a:1}]); console.log(">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="ZJL | BLOG" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://www.zhangjiale.club/2017/06/11/ES6part/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>ECMAScript 6 | ZJL | BLOG</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZJL | BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">Stay hungry stay foolish</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <a href="https://github.com/zhangjialegh" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.zhangjiale.club/2017/06/11/ES6part/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zjl">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZJL | BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">ECMAScript 6
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-06-11 00:00:00" itemprop="dateCreated datePublished" datetime="2017-06-11T00:00:00+08:00">2017-06-11</time>
+            </span>
+          
+
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/js基础/" itemprop="url" rel="index"><span itemprop="name">js基础</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+                 阅读次数： 
+                <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+              </span>
+            </span>
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><ul>
+<li>集合的基本概念：集合是由一组无序且唯一（即不能重复）的项组成的。这个数据结构使用了与有限集合相同的数学概念，应用在计算机的数据结构中。</li>
+<li>特点：key 和 value相同，没有重复的value</li>
+<li>ES6提供了数据结构Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。</li>
+</ul>
+<h3 id="1-创建一个Set"><a href="#1-创建一个Set" class="headerlink" title="1. 创建一个Set"></a>1. 创建一个Set</h3><pre><code>const s = new Set([1,2,3,3,{a:1}]);
+console.log(s);
+</code></pre><h3 id="2-Set类的属性"><a href="#2-Set类的属性" class="headerlink" title="2. Set类的属性"></a>2. Set类的属性</h3><pre><code>console.log(s.size) //4
+</code></pre><h3 id="3-Set类的方法"><a href="#3-Set类的方法" class="headerlink" title="3. Set类的方法"></a>3. Set类的方法</h3><pre><code>const s = new Set([1,2,3]);
+</code></pre><h5 id="1-添加一个数据"><a href="#1-添加一个数据" class="headerlink" title="1.添加一个数据"></a>1.添加一个数据</h5><p><strong>添加一个数据，返回Set结构本身</strong></p>
+<pre><code>s.add(&apos;a&apos;).add(&apos;b&apos;).add(&apos;c&apos;);
+</code></pre><h5 id="2-删除一个数据"><a href="#2-删除一个数据" class="headerlink" title="2.删除一个数据"></a>2.删除一个数据</h5><p><strong>删除一个数据，返回一个布尔值，表示删除是否成功</strong></p>
+<pre><code>console.log(s.delete(&apos;a&apos;));
+//true
+console.log(s);
+//Set(5) {1, 2, 3, &quot;b&quot;, &quot;c&quot;}
+console.log(s.delete(&apos;a&apos;));
+//false
+</code></pre><h5 id="3-是否有一个数据"><a href="#3-是否有一个数据" class="headerlink" title="3.是否有一个数据"></a>3.是否有一个数据</h5><p><strong>判断该值是否是Set的成员，返回一个布尔值</strong></p>
+<pre><code>console.log(s.has(&apos;a&apos;));
+//false
+console.log(s.has(1));
+//true
+</code></pre><h5 id="4-清楚所有数据，没有返回值"><a href="#4-清楚所有数据，没有返回值" class="headerlink" title="4.清楚所有数据，没有返回值"></a>4.清楚所有数据，没有返回值</h5><pre><code>s.clear();
+console.log(s);
+//Set(0) {}
+</code></pre><h3 id="4-数组去重"><a href="#4-数组去重" class="headerlink" title="4.数组去重"></a>4.数组去重</h3><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>,[],[],<span class="literal">true</span>,<span class="literal">NaN</span>,<span class="literal">NaN</span>,<span class="literal">false</span>,<span class="literal">true</span>,&#123;a:<span class="number">1</span>&#125;];</span><br><span class="line"></span><br><span class="line">console.log([...new <span class="built_in">Set</span>(arr)]);</span><br><span class="line">//[<span class="number">1</span>, <span class="number">2</span>, <span class="built_in">Array</span>(<span class="number">0</span>), <span class="built_in">Array</span>(<span class="number">0</span>), <span class="literal">true</span>, <span class="literal">NaN</span>, <span class="literal">false</span>, Object]</span><br></pre></td></tr></table></figure>
+<h3 id="5-返回键名的遍历器keys"><a href="#5-返回键名的遍历器keys" class="headerlink" title="5.返回键名的遍历器keys()"></a>5.返回键名的遍历器keys()</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> k = <span class="keyword">new</span> <span class="built_in">Set</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(k.keys());</span><br><span class="line"><span class="comment">//SetIterator &#123;1, 2, 3&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-返回键值的遍历器values"><a href="#6-返回键值的遍历器values" class="headerlink" title="6.返回键值的遍历器values()"></a>6.返回键值的遍历器values()</h3><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.<span class="built_in">log</span>(k.values());</span><br><span class="line"><span class="comment">//SetIterator &#123;1, 2, 3&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="7-返回键值对的遍历器entries"><a href="#7-返回键值对的遍历器entries" class="headerlink" title="7.返回键值对的遍历器entries()"></a>7.返回键值对的遍历器entries()</h3><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.<span class="built_in">log</span>(k.entries());</span><br><span class="line"><span class="comment">//SetIterator &#123;1, 2, 3&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="8-使用回掉函数遍历每个成员"><a href="#8-使用回掉函数遍历每个成员" class="headerlink" title="8.使用回掉函数遍历每个成员"></a>8.使用回掉函数遍历每个成员</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">k.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">value,key,set</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(key + <span class="string">'ES6'</span>);</span><br><span class="line">  <span class="comment">//1ES6  2ES6  3ES6</span></span><br><span class="line"> &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="9-注意事项"><a href="#9-注意事项" class="headerlink" title="9.注意事项"></a>9.注意事项</h3><ol>
+<li>key 和 vaule是相同的</li>
+<li>NaN 和 NaN 认为是相同的</li>
+<li>{ } 和 { } 是不同的</li>
+</ol>
+<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><ul>
+<li>字典：是用来存储不重复的key的Hash结构。不同于集合（Set）的是，字典使用的是[键，值]的形式来存储数据的。</li>
+<li>JavaScript的对象（Object：{ }）只能用字符串当作键，这给它的使用带来了很大的限制。</li>
+<li>为了解决这个问题，ES6提供了Map数据结构。它类似于对象，也是键值对的集合，但是”键”的范围不限于字符串，各种类型的值（包括对象）都可以当做键，也就是说，Object结构提供了”字符串-值”的对应，Map结构提供了”值-值”的对应，是一种更完善的Hash结构的实现。如果你需要”键值对”的数据结构，Map比Object更合适。</li>
+</ul>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data1 = &#123;a:1&#125;,data2 = &#123;b:2&#125;,obj = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">obj[data1] = 1;</span><br><span class="line">obj[data2] = 2;</span><br><span class="line"></span><br><span class="line">console.<span class="built_in">log</span>(obj);<span class="comment">// &#123;[object Object]: 2&#125;</span></span><br><span class="line"></span><br><span class="line">console.<span class="built_in">log</span>(data1.<span class="keyword">toString</span>()===data2.<span class="keyword">toString</span>());</span><br><span class="line"><span class="comment">//true;</span></span><br></pre></td></tr></table></figure>
+<h3 id="创建一个Map"><a href="#创建一个Map" class="headerlink" title="创建一个Map"></a>创建一个Map</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">map</span> = <span class="keyword">new</span> Map([</span><br><span class="line"> [<span class="string">'a'</span>,<span class="number">1</span>],</span><br><span class="line"> [<span class="string">'b'</span>,<span class="number">2</span>]</span><br><span class="line">]);</span><br><span class="line">console.<span class="built_in">log</span>(<span class="built_in">map</span>);</span><br><span class="line"><span class="comment">//&#123;"a" =&gt; 1, "b" =&gt; 2&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Map类的属性"><a href="#Map类的属性" class="headerlink" title="Map类的属性"></a>Map类的属性</h3><pre><code>console.log(map.size)
+</code></pre><h3 id="Map类的方法"><a href="#Map类的方法" class="headerlink" title="Map类的方法"></a>Map类的方法</h3><pre><code>***1.set(key,value)设置键名key对应的键值为value，然后返回整个Map结构。如果key已经有值，则键值会被更新，否则就新生成该键。***
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">map.set(<span class="string">'miaov'</span>.<span class="string">'ketang'</span>).<span class="built_in">set</span>(<span class="string">'new'</span>,<span class="string">'fq'</span>).<span class="built_in">set</span>(<span class="string">'miaov'</span>,<span class="string">'leo'</span>);</span><br><span class="line"></span><br><span class="line">console.log(map);</span><br><span class="line">//Map(4) &#123;<span class="string">"a"</span> =&gt; 1, <span class="string">"b"</span> =&gt; 2, <span class="string">"miaov"</span> =&gt; <span class="string">"leo"</span>, <span class="string">"new"</span> =&gt; <span class="string">"fq"</span>&#125;</span><br></pre></td></tr></table></figure>
+
+***2.get(key)get方法读取key对应的键值，如果找不到key，返回undefined***
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">console.<span class="built_in">log</span>(<span class="built_in">map</span>.<span class="built_in">get</span>(<span class="string">'new'</span>));</span><br><span class="line"><span class="comment">//'fq'</span></span><br><span class="line">console.<span class="built_in">log</span>(<span class="built_in">map</span>.<span class="built_in">get</span>(<span class="string">'x'</span>));</span><br><span class="line"><span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
+
+***3.delete(key)删除某个键，返回true，如果删除失败，返回false***
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">console.<span class="built_in">log</span>(<span class="built_in">map</span>.<span class="keyword">delete</span>(<span class="string">'a'</span>));</span><br><span class="line"><span class="comment">//true</span></span><br><span class="line">console.<span class="built_in">log</span>(<span class="built_in">map</span>.<span class="keyword">delete</span>(<span class="string">'a'</span>));</span><br><span class="line"><span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+
+***4.has(key)某个键是否在Map对象中，如果是返回true，如果没有返回false***
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">console.<span class="keyword">log</span>(<span class="built_in">map</span>.has(<span class="string">'a'</span>));</span><br><span class="line"><span class="comment">//false</span></span><br><span class="line">console.<span class="keyword">log</span>(<span class="built_in">map</span>.has(<span class="string">'miaov'</span>));</span><br><span class="line"><span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+ ***5.clear()清除所有数据，没有返回值***
+ ***6.keys()返回键名的遍历器***
+ ***7.value()返回键值的遍历器***
+ ***8.entries()返回键值对的遍历器***
+ ***9.forEach()使用回调函数遍历每个成员***
+</code></pre><h3 id="Map在使用中的注意事项："><a href="#Map在使用中的注意事项：" class="headerlink" title="Map在使用中的注意事项："></a>Map在使用中的注意事项：</h3><pre><code>1.NaN 是相同的
+2.{ }是不同的
+3.特殊性质：数据是按照添加的顺序排列的
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> s = <span class="literal">new</span> <span class="built_in">Map</span>();</span><br><span class="line">  s.<span class="built_in">set</span>(<span class="number">2</span>,<span class="number">2</span>).<span class="built_in">set</span>(<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// &#123;2 =&gt; 2, 1 =&gt; 1&#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><h2 id="函数的默认参数"><a href="#函数的默认参数" class="headerlink" title="函数的默认参数"></a>函数的默认参数</h2><p> ES6允许给函数制定默认参数</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span><span class="params">(a,b)</span><span class="comment">&#123;</span></span></span><br><span class="line"><span class="function"><span class="comment">  a = a || 1;</span></span></span><br><span class="line"><span class="function"><span class="comment">  b = b || 2;</span></span></span><br><span class="line"><span class="function"><span class="comment">  </span></span></span><br><span class="line"><span class="function"><span class="comment">  console.log(a+b);</span></span></span><br><span class="line"><span class="function"><span class="comment">  &#125;</span></span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function">  <span class="title">fn</span><span class="params">()</span>;</span> <span class="comment">//3</span></span><br><span class="line">  fn(<span class="number">0</span>,<span class="number">1</span>);  <span class="comment">//2//出现问题</span></span><br></pre></td></tr></table></figure>
+<p> 添加默认参数</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn2</span><span class="params">(a = 1,b =2)</span><span class="comment">&#123;</span></span></span><br><span class="line"><span class="function"><span class="comment">  console.log(a+b);</span></span></span><br><span class="line"><span class="function"><span class="comment">&#125;</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">fn2</span><span class="params">()</span>;</span> <span class="comment">//3</span></span><br><span class="line">fn2(<span class="number">0</span>,<span class="number">1</span>);  <span class="comment">//1</span></span><br></pre></td></tr></table></figure>
+<p> 同样支持解构</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn3</span><span class="params">(<span class="comment">&#123;a,b&#125;</span>=<span class="comment">&#123;a:1,b:2&#125;</span>)</span><span class="comment">&#123;</span></span></span><br><span class="line"><span class="function"><span class="comment">  console.log(a+b);</span></span></span><br><span class="line"><span class="function"><span class="comment">&#125;</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">fn3</span><span class="params">()</span>;</span>  <span class="comment">//3</span></span><br><span class="line">fn3(<span class="comment">&#123;&#125;</span>);  <span class="comment">//NaN</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//------------------------</span></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">fn4</span><span class="params">(<span class="comment">&#123;a=1,b=2&#125;</span>=<span class="comment">&#123;&#125;</span>)</span><span class="comment">&#123;</span></span></span><br><span class="line"><span class="function"><span class="comment">   console.log(a+b);</span></span></span><br><span class="line"><span class="function"><span class="comment"> &#125;</span></span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function"> <span class="title">fn4</span><span class="params">()</span>;</span>  <span class="comment">//3</span></span><br><span class="line"> fn4(<span class="comment">&#123;&#125;</span>);  <span class="comment">//3</span></span><br><span class="line"> fn4(<span class="comment">&#123;a:4&#125;</span>);  <span class="comment">//6</span></span><br></pre></td></tr></table></figure>
+<h2 id="函数的rest参数"><a href="#函数的rest参数" class="headerlink" title="函数的rest参数"></a>函数的rest参数</h2><p> es6中新增了rest参数，用来取代argumets，在est中废除了arguments  caller callee</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// callee用法</span></span><br><span class="line">(</span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(n);</span><br><span class="line">    <span class="keyword">if</span>(n===<span class="number">1</span>) <span class="keyword">return</span> n;</span><br><span class="line">    <span class="keyword">return</span> n*<span class="built_in">arguments</span>.callee(n<span class="number">-1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">)(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// caller用法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'我6666666！'</span>);</span><br><span class="line">  setInterval(f1.caller,<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'6不6？'</span>);</span><br><span class="line">  f1();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f2();</span><br></pre></td></tr></table></figure>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span><span class="params">(<span class="rest_arg">...res</span>)</span></span>&#123;</span><br><span class="line"> console.log(res);</span><br><span class="line">  let ret = res.reduce(<span class="function"><span class="keyword">function</span> <span class="params">(a,b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a+b;</span><br><span class="line">  &#125;);</span><br><span class="line">  console.log(ret);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">add(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>);  <span class="comment">//10</span></span><br></pre></td></tr></table></figure>
+<p> rest 参数 必须是最后一个参数</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span><span class="params">(a=1,b=2,<span class="rest_arg">...res</span>)</span></span>&#123;</span><br><span class="line">   console.log(a);</span><br><span class="line">   console.log(b);</span><br><span class="line">   console.log(res);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn(); <span class="comment">// 1 2 []</span></span><br></pre></td></tr></table></figure>
+<h2 id="胖子函数"><a href="#胖子函数" class="headerlink" title="胖子函数"></a>胖子函数</h2><p><strong><em>胖子函数又叫箭头函数，通常用在函数表达式内和回调函数当中</em></strong></p>
+<ol>
+<li>没有自己的this</li>
+<li>没有arguments</li>
+<li>不能当做构造函数</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a+b</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a+b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> add = <span class="function">(<span class="params">a,b</span>) =&gt;</span> a+b;</span><br><span class="line"><span class="comment">//相当于 return a+b</span></span><br><span class="line"><span class="built_in">console</span>.log(add(<span class="number">1</span>,<span class="number">2</span>));  <span class="comment">//3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> sortArr = <span class="function"><span class="params">arr</span> =&gt;</span> arr.sort();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(sortArr([<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>]));</span><br><span class="line"><span class="comment">// [1, 2, 3]</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fn = <span class="function">(<span class="params">a = <span class="number">1</span>, b = <span class="number">2</span></span>) =&gt;</span> &#123;  <span class="comment">//当有函数体的时候必须有 return</span></span><br><span class="line">  <span class="built_in">console</span>.log(a + b); <span class="comment">//3</span></span><br><span class="line">  <span class="keyword">return</span> c = a + b + <span class="number">2</span>;</span><br><span class="line">&#125;;</span><br><span class="line">fn(); <span class="comment">//5</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr = [<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a-b;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">arr.sort(<span class="function">(<span class="params">a,b</span>)=&gt;</span>a-b);</span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br><span class="line"><span class="comment">// [1,2,3,4,5]</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag"><i class="fa fa-tag"></i> js</a>
+          
+        </div>
+      
+
+      
+        <div>
+          <div class="-mob-share-ui-button -mob-share-open" style="
+    width: 100px;
+    height: 14px;
+    border-radius: 0px;
+    font-size: 14px;
+    line-height: 1;
+    margin: 15px auto 0;
+    border: 2px solid #000;
+    color: #000;
+    background: #fff;
+    padding: 7px;
+    text-align: center;
+">分享</div>
+<div class="-mob-share-ui" style="display: none">
+    <ul class="-mob-share-list">
+        <li class="-mob-share-weixin"><p>微信</p></li>
+        <li class="-mob-share-youdao"><p>有道云笔记</p></li>
+        <li class="-mob-share-douban"><p>豆瓣</p></li>
+        <li class="-mob-share-weibo"><p>新浪微博</p></li>
+        <li class="-mob-share-qzone"><p>QQ空间</p></li>
+        <li class="-mob-share-qq"><p>QQ好友</p></li>
+    </ul>
+    <div class="-mob-share-close">取消</div>
+</div>
+<div class="-mob-share-ui-bg"></div>
+<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=2ba0343803f7c"></script>
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/11/正则表达式/" rel="next" title="Js正则表达式">
+                <i class="fa fa-chevron-left"></i> Js正则表达式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/31/前端性能优化（css动画篇）/" rel="prev" title="前端性能优化(Css动画篇)">
+                前端性能优化(Css动画篇) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  <div>
+    
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------ 本文结束------</div>
+    
+</div>
+    
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpeg" alt="zjl">
+            
+              <p class="site-author-name" itemprop="name">zjl</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/zhangjialegh" title="GitHub &rarr; https://github.com/zhangjialegh" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/bestzjl" title="Weibo &rarr; https://weibo.com/bestzjl" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Set"><span class="nav-number">1.</span> <span class="nav-text">Set</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-创建一个Set"><span class="nav-number">1.1.</span> <span class="nav-text">1. 创建一个Set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Set类的属性"><span class="nav-number">1.2.</span> <span class="nav-text">2. Set类的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Set类的方法"><span class="nav-number">1.3.</span> <span class="nav-text">3. Set类的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-添加一个数据"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">1.添加一个数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-删除一个数据"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">2.删除一个数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-是否有一个数据"><span class="nav-number">1.3.0.3.</span> <span class="nav-text">3.是否有一个数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-清楚所有数据，没有返回值"><span class="nav-number">1.3.0.4.</span> <span class="nav-text">4.清楚所有数据，没有返回值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-数组去重"><span class="nav-number">1.4.</span> <span class="nav-text">4.数组去重</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-返回键名的遍历器keys"><span class="nav-number">1.5.</span> <span class="nav-text">5.返回键名的遍历器keys()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-返回键值的遍历器values"><span class="nav-number">1.6.</span> <span class="nav-text">6.返回键值的遍历器values()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-返回键值对的遍历器entries"><span class="nav-number">1.7.</span> <span class="nav-text">7.返回键值对的遍历器entries()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-使用回掉函数遍历每个成员"><span class="nav-number">1.8.</span> <span class="nav-text">8.使用回掉函数遍历每个成员</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-注意事项"><span class="nav-number">1.9.</span> <span class="nav-text">9.注意事项</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#Map"><span class="nav-number">2.</span> <span class="nav-text">Map</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建一个Map"><span class="nav-number">2.1.</span> <span class="nav-text">创建一个Map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Map类的属性"><span class="nav-number">2.2.</span> <span class="nav-text">Map类的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Map类的方法"><span class="nav-number">2.3.</span> <span class="nav-text">Map类的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Map在使用中的注意事项："><span class="nav-number">2.4.</span> <span class="nav-text">Map在使用中的注意事项：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的默认参数"><span class="nav-number">3.</span> <span class="nav-text">函数的默认参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的rest参数"><span class="nav-number">4.</span> <span class="nav-text">函数的rest参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#胖子函数"><span class="nav-number">5.</span> <span class="nav-text">胖子函数</span></a></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">津ICP备19010446号 </a>&copy; 2016 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zjl</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'ac98aa73e7ed1bd895b4',
+    clientSecret: 'f1d8b771093705b6be233834ae27965a0d49eca2',
+    repo: 'blog-comments',
+    owner: 'zhangjialegh',
+    admin: ['zhangjialegh'],
+    id: md5(location.pathname),
+    
+      language: window.navigator.language || window.navigator.userLanguage,
+    
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
