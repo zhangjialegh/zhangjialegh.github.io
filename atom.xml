@@ -5,9 +5,9 @@
   <subtitle>Stay hungry stay foolish</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://www.zhangjiale.club/"/>
+  <link href="https://zhangjialegh.github.io/"/>
   <updated>2020-08-29T13:24:21.980Z</updated>
-  <id>https://www.zhangjiale.club/</id>
+  <id>https://zhangjialegh.github.io/</id>
   
   <author>
     <name>zjl</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>微信网页开发</title>
-    <link href="https://www.zhangjiale.club/2019/09/08/%E5%BE%AE%E4%BF%A1%E7%BD%91%E9%A1%B5%E5%BC%80%E5%8F%91/"/>
-    <id>https://www.zhangjiale.club/2019/09/08/微信网页开发/</id>
+    <link href="https://zhangjialegh.github.io/2019/09/08/%E5%BE%AE%E4%BF%A1%E7%BD%91%E9%A1%B5%E5%BC%80%E5%8F%91/"/>
+    <id>https://zhangjialegh.github.io/2019/09/08/微信网页开发/</id>
     <published>2019-09-07T23:01:00.000Z</published>
     <updated>2020-08-29T13:24:21.980Z</updated>
     
@@ -35,17 +35,17 @@
     
     </summary>
     
-      <category term="js" scheme="https://www.zhangjiale.club/categories/js/"/>
+      <category term="js" scheme="https://zhangjialegh.github.io/categories/js/"/>
     
     
-      <category term="js" scheme="https://www.zhangjiale.club/tags/js/"/>
+      <category term="js" scheme="https://zhangjialegh.github.io/tags/js/"/>
     
   </entry>
   
   <entry>
     <title>Zlib</title>
-    <link href="https://www.zhangjiale.club/2019/07/10/Zlib/"/>
-    <id>https://www.zhangjiale.club/2019/07/10/Zlib/</id>
+    <link href="https://zhangjialegh.github.io/2019/07/10/Zlib/"/>
+    <id>https://zhangjialegh.github.io/2019/07/10/Zlib/</id>
     <published>2019-07-09T22:06:00.000Z</published>
     <updated>2020-08-29T13:24:21.978Z</updated>
     
@@ -61,17 +61,17 @@
     
     </summary>
     
-      <category term="node" scheme="https://www.zhangjiale.club/categories/node/"/>
+      <category term="node" scheme="https://zhangjialegh.github.io/categories/node/"/>
     
     
-      <category term="node" scheme="https://www.zhangjiale.club/tags/node/"/>
+      <category term="node" scheme="https://zhangjialegh.github.io/tags/node/"/>
     
   </entry>
   
   <entry>
     <title>Jest简介</title>
-    <link href="https://www.zhangjiale.club/2019/05/15/Jest%E7%AE%80%E4%BB%8B/"/>
-    <id>https://www.zhangjiale.club/2019/05/15/Jest简介/</id>
+    <link href="https://zhangjialegh.github.io/2019/05/15/Jest%E7%AE%80%E4%BB%8B/"/>
+    <id>https://zhangjialegh.github.io/2019/05/15/Jest简介/</id>
     <published>2019-05-14T20:55:00.000Z</published>
     <updated>2020-08-29T13:24:21.977Z</updated>
     
@@ -87,19 +87,19 @@
     
     </summary>
     
-      <category term="测试" scheme="https://www.zhangjiale.club/categories/%E6%B5%8B%E8%AF%95/"/>
+      <category term="测试" scheme="https://zhangjialegh.github.io/categories/%E6%B5%8B%E8%AF%95/"/>
     
     
-      <category term="js" scheme="https://www.zhangjiale.club/tags/js/"/>
+      <category term="js" scheme="https://zhangjialegh.github.io/tags/js/"/>
     
-      <category term="开发测试" scheme="https://www.zhangjiale.club/tags/%E5%BC%80%E5%8F%91%E6%B5%8B%E8%AF%95/"/>
+      <category term="开发测试" scheme="https://zhangjialegh.github.io/tags/%E5%BC%80%E5%8F%91%E6%B5%8B%E8%AF%95/"/>
     
   </entry>
   
   <entry>
     <title>GitHub自动部署</title>
-    <link href="https://www.zhangjiale.club/2019/02/21/GitHub%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/"/>
-    <id>https://www.zhangjiale.club/2019/02/21/GitHub自动部署/</id>
+    <link href="https://zhangjialegh.github.io/2019/02/21/GitHub%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/"/>
+    <id>https://zhangjialegh.github.io/2019/02/21/GitHub自动部署/</id>
     <published>2019-02-20T16:19:00.000Z</published>
     <updated>2020-08-29T13:24:21.977Z</updated>
     
@@ -115,17 +115,17 @@
     
     </summary>
     
-      <category term="nodejs" scheme="https://www.zhangjiale.club/categories/nodejs/"/>
+      <category term="nodejs" scheme="https://zhangjialegh.github.io/categories/nodejs/"/>
     
     
-      <category term="nodejs" scheme="https://www.zhangjiale.club/tags/nodejs/"/>
+      <category term="nodejs" scheme="https://zhangjialegh.github.io/tags/nodejs/"/>
     
   </entry>
   
   <entry>
     <title>网路基础TCP/IP</title>
-    <link href="https://www.zhangjiale.club/2019/01/11/%E7%BD%91%E8%B7%AF%E5%9F%BA%E7%A1%80TCP-IP/"/>
-    <id>https://www.zhangjiale.club/2019/01/11/网路基础TCP-IP/</id>
+    <link href="https://zhangjialegh.github.io/2019/01/11/%E7%BD%91%E8%B7%AF%E5%9F%BA%E7%A1%80TCP-IP/"/>
+    <id>https://zhangjialegh.github.io/2019/01/11/网路基础TCP-IP/</id>
     <published>2019-01-10T21:03:00.000Z</published>
     <updated>2020-08-29T13:24:21.981Z</updated>
     
@@ -141,17 +141,17 @@
     
     </summary>
     
-      <category term="web技术" scheme="https://www.zhangjiale.club/categories/web%E6%8A%80%E6%9C%AF/"/>
+      <category term="web技术" scheme="https://zhangjialegh.github.io/categories/web%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="web技术" scheme="https://www.zhangjiale.club/tags/web%E6%8A%80%E6%9C%AF/"/>
+      <category term="web技术" scheme="https://zhangjialegh.github.io/tags/web%E6%8A%80%E6%9C%AF/"/>
     
   </entry>
   
   <entry>
     <title>Koa中间件的开发和使用</title>
-    <link href="https://www.zhangjiale.club/2018/10/08/koa%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E5%BC%80%E5%8F%91%E5%92%8C%E4%BD%BF%E7%94%A8/"/>
-    <id>https://www.zhangjiale.club/2018/10/08/koa中间件的开发和使用/</id>
+    <link href="https://zhangjialegh.github.io/2018/10/08/koa%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E5%BC%80%E5%8F%91%E5%92%8C%E4%BD%BF%E7%94%A8/"/>
+    <id>https://zhangjialegh.github.io/2018/10/08/koa中间件的开发和使用/</id>
     <published>2018-10-08T12:44:00.000Z</published>
     <updated>2020-08-29T13:24:21.979Z</updated>
     
@@ -168,17 +168,17 @@
     
     </summary>
     
-      <category term="nodejs" scheme="https://www.zhangjiale.club/categories/nodejs/"/>
+      <category term="nodejs" scheme="https://zhangjialegh.github.io/categories/nodejs/"/>
     
     
-      <category term="nodejs" scheme="https://www.zhangjiale.club/tags/nodejs/"/>
+      <category term="nodejs" scheme="https://zhangjialegh.github.io/tags/nodejs/"/>
     
   </entry>
   
   <entry>
     <title>迭代器和生成器</title>
-    <link href="https://www.zhangjiale.club/2018/07/08/%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%92%8C%E7%94%9F%E6%88%90%E5%99%A8/"/>
-    <id>https://www.zhangjiale.club/2018/07/08/迭代器和生成器/</id>
+    <link href="https://zhangjialegh.github.io/2018/07/08/%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%92%8C%E7%94%9F%E6%88%90%E5%99%A8/"/>
+    <id>https://zhangjialegh.github.io/2018/07/08/迭代器和生成器/</id>
     <published>2018-07-07T23:01:00.000Z</published>
     <updated>2020-08-29T13:24:21.981Z</updated>
     
@@ -195,17 +195,17 @@
     
     </summary>
     
-      <category term="js" scheme="https://www.zhangjiale.club/categories/js/"/>
+      <category term="js" scheme="https://zhangjialegh.github.io/categories/js/"/>
     
     
-      <category term="js" scheme="https://www.zhangjiale.club/tags/js/"/>
+      <category term="js" scheme="https://zhangjialegh.github.io/tags/js/"/>
     
   </entry>
   
   <entry>
     <title>深入理解Redux中间件</title>
-    <link href="https://www.zhangjiale.club/2018/07/07/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Redux%E4%B8%AD%E9%97%B4%E4%BB%B6/"/>
-    <id>https://www.zhangjiale.club/2018/07/07/深入理解Redux中间件/</id>
+    <link href="https://zhangjialegh.github.io/2018/07/07/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Redux%E4%B8%AD%E9%97%B4%E4%BB%B6/"/>
+    <id>https://zhangjialegh.github.io/2018/07/07/深入理解Redux中间件/</id>
     <published>2018-07-06T20:26:00.000Z</published>
     <updated>2020-08-29T13:24:21.981Z</updated>
     
@@ -221,17 +221,17 @@
     
     </summary>
     
-      <category term="web前端" scheme="https://www.zhangjiale.club/categories/web%E5%89%8D%E7%AB%AF/"/>
+      <category term="web前端" scheme="https://zhangjialegh.github.io/categories/web%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="redux" scheme="https://www.zhangjiale.club/tags/redux/"/>
+      <category term="redux" scheme="https://zhangjialegh.github.io/tags/redux/"/>
     
   </entry>
   
   <entry>
     <title>PM2用法简介</title>
-    <link href="https://www.zhangjiale.club/2018/02/20/pm2%E7%94%A8%E6%B3%95%E7%AE%80%E4%BB%8B/"/>
-    <id>https://www.zhangjiale.club/2018/02/20/pm2用法简介/</id>
+    <link href="https://zhangjialegh.github.io/2018/02/20/pm2%E7%94%A8%E6%B3%95%E7%AE%80%E4%BB%8B/"/>
+    <id>https://zhangjialegh.github.io/2018/02/20/pm2用法简介/</id>
     <published>2018-02-19T16:00:00.000Z</published>
     <updated>2020-08-29T13:24:21.979Z</updated>
     
@@ -247,17 +247,17 @@
     
     </summary>
     
-      <category term="nodejs" scheme="https://www.zhangjiale.club/categories/nodejs/"/>
+      <category term="nodejs" scheme="https://zhangjialegh.github.io/categories/nodejs/"/>
     
     
-      <category term="node" scheme="https://www.zhangjiale.club/tags/node/"/>
+      <category term="node" scheme="https://zhangjialegh.github.io/tags/node/"/>
     
   </entry>
   
   <entry>
     <title>前端性能优化(Css动画篇)</title>
-    <link href="https://www.zhangjiale.club/2017/07/31/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%EF%BC%88css%E5%8A%A8%E7%94%BB%E7%AF%87%EF%BC%89/"/>
-    <id>https://www.zhangjiale.club/2017/07/31/前端性能优化（css动画篇）/</id>
+    <link href="https://zhangjialegh.github.io/2017/07/31/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%EF%BC%88css%E5%8A%A8%E7%94%BB%E7%AF%87%EF%BC%89/"/>
+    <id>https://zhangjialegh.github.io/2017/07/31/前端性能优化（css动画篇）/</id>
     <published>2017-07-31T12:46:25.000Z</published>
     <updated>2020-08-29T13:24:21.980Z</updated>
     
@@ -273,19 +273,19 @@
     
     </summary>
     
-      <category term="前端性能优化" scheme="https://www.zhangjiale.club/categories/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+      <category term="前端性能优化" scheme="https://zhangjialegh.github.io/categories/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
     
     
-      <category term="web前端" scheme="https://www.zhangjiale.club/tags/web%E5%89%8D%E7%AB%AF/"/>
+      <category term="web前端" scheme="https://zhangjialegh.github.io/tags/web%E5%89%8D%E7%AB%AF/"/>
     
-      <category term="css" scheme="https://www.zhangjiale.club/tags/css/"/>
+      <category term="css" scheme="https://zhangjialegh.github.io/tags/css/"/>
     
   </entry>
   
   <entry>
     <title>ECMAScript 6</title>
-    <link href="https://www.zhangjiale.club/2017/06/11/ES6part/"/>
-    <id>https://www.zhangjiale.club/2017/06/11/ES6part/</id>
+    <link href="https://zhangjialegh.github.io/2017/06/11/ES6part/"/>
+    <id>https://zhangjialegh.github.io/2017/06/11/ES6part/</id>
     <published>2017-06-10T16:00:00.000Z</published>
     <updated>2020-08-29T13:24:21.977Z</updated>
     
@@ -301,17 +301,17 @@
     
     </summary>
     
-      <category term="js基础" scheme="https://www.zhangjiale.club/categories/js%E5%9F%BA%E7%A1%80/"/>
+      <category term="js基础" scheme="https://zhangjialegh.github.io/categories/js%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="js" scheme="https://www.zhangjiale.club/tags/js/"/>
+      <category term="js" scheme="https://zhangjialegh.github.io/tags/js/"/>
     
   </entry>
   
   <entry>
     <title>Js正则表达式</title>
-    <link href="https://www.zhangjiale.club/2017/06/11/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
-    <id>https://www.zhangjiale.club/2017/06/11/正则表达式/</id>
+    <link href="https://zhangjialegh.github.io/2017/06/11/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+    <id>https://zhangjialegh.github.io/2017/06/11/正则表达式/</id>
     <published>2017-06-10T16:00:00.000Z</published>
     <updated>2020-08-29T13:24:21.980Z</updated>
     
@@ -327,17 +327,17 @@
     
     </summary>
     
-      <category term="js基础" scheme="https://www.zhangjiale.club/categories/js%E5%9F%BA%E7%A1%80/"/>
+      <category term="js基础" scheme="https://zhangjialegh.github.io/categories/js%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="js" scheme="https://www.zhangjiale.club/tags/js/"/>
+      <category term="js" scheme="https://zhangjialegh.github.io/tags/js/"/>
     
   </entry>
   
   <entry>
     <title>BOM(浏览器对象模型)</title>
-    <link href="https://www.zhangjiale.club/2017/05/11/BOM/"/>
-    <id>https://www.zhangjiale.club/2017/05/11/BOM/</id>
+    <link href="https://zhangjialegh.github.io/2017/05/11/BOM/"/>
+    <id>https://zhangjialegh.github.io/2017/05/11/BOM/</id>
     <published>2017-05-10T16:00:00.000Z</published>
     <updated>2020-08-29T13:24:21.976Z</updated>
     
@@ -354,17 +354,17 @@
     
     </summary>
     
-      <category term="js基础" scheme="https://www.zhangjiale.club/categories/js%E5%9F%BA%E7%A1%80/"/>
+      <category term="js基础" scheme="https://zhangjialegh.github.io/categories/js%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="js" scheme="https://www.zhangjiale.club/tags/js/"/>
+      <category term="js" scheme="https://zhangjialegh.github.io/tags/js/"/>
     
   </entry>
   
   <entry>
     <title>Cookie</title>
-    <link href="https://www.zhangjiale.club/2017/04/20/cookie/"/>
-    <id>https://www.zhangjiale.club/2017/04/20/cookie/</id>
+    <link href="https://zhangjialegh.github.io/2017/04/20/cookie/"/>
+    <id>https://zhangjialegh.github.io/2017/04/20/cookie/</id>
     <published>2017-04-19T16:00:00.000Z</published>
     <updated>2020-08-29T13:24:21.979Z</updated>
     
@@ -380,19 +380,19 @@
     
     </summary>
     
-      <category term="js基础" scheme="https://www.zhangjiale.club/categories/js%E5%9F%BA%E7%A1%80/"/>
+      <category term="js基础" scheme="https://zhangjialegh.github.io/categories/js%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="js" scheme="https://www.zhangjiale.club/tags/js/"/>
+      <category term="js" scheme="https://zhangjialegh.github.io/tags/js/"/>
     
-      <category term="web前端" scheme="https://www.zhangjiale.club/tags/web%E5%89%8D%E7%AB%AF/"/>
+      <category term="web前端" scheme="https://zhangjialegh.github.io/tags/web%E5%89%8D%E7%AB%AF/"/>
     
   </entry>
   
   <entry>
     <title>DOM(文档对象模型)</title>
-    <link href="https://www.zhangjiale.club/2017/03/06/DOM/"/>
-    <id>https://www.zhangjiale.club/2017/03/06/DOM/</id>
+    <link href="https://zhangjialegh.github.io/2017/03/06/DOM/"/>
+    <id>https://zhangjialegh.github.io/2017/03/06/DOM/</id>
     <published>2017-03-05T16:00:00.000Z</published>
     <updated>2020-08-29T13:24:21.976Z</updated>
     
@@ -410,17 +410,17 @@
     
     </summary>
     
-      <category term="js基础" scheme="https://www.zhangjiale.club/categories/js%E5%9F%BA%E7%A1%80/"/>
+      <category term="js基础" scheme="https://zhangjialegh.github.io/categories/js%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="js" scheme="https://www.zhangjiale.club/tags/js/"/>
+      <category term="js" scheme="https://zhangjialegh.github.io/tags/js/"/>
     
   </entry>
   
   <entry>
     <title>js中Math对象</title>
-    <link href="https://www.zhangjiale.club/2017/02/20/Math%E5%AF%B9%E8%B1%A1/"/>
-    <id>https://www.zhangjiale.club/2017/02/20/Math对象/</id>
+    <link href="https://zhangjialegh.github.io/2017/02/20/Math%E5%AF%B9%E8%B1%A1/"/>
+    <id>https://zhangjialegh.github.io/2017/02/20/Math对象/</id>
     <published>2017-02-19T16:00:00.000Z</published>
     <updated>2020-08-29T13:24:21.978Z</updated>
     
@@ -438,17 +438,17 @@
     
     </summary>
     
-      <category term="js基础" scheme="https://www.zhangjiale.club/categories/js%E5%9F%BA%E7%A1%80/"/>
+      <category term="js基础" scheme="https://zhangjialegh.github.io/categories/js%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="js" scheme="https://www.zhangjiale.club/tags/js/"/>
+      <category term="js" scheme="https://zhangjialegh.github.io/tags/js/"/>
     
   </entry>
   
   <entry>
     <title>Js中的数据类型</title>
-    <link href="https://www.zhangjiale.club/2017/02/06/JS%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"/>
-    <id>https://www.zhangjiale.club/2017/02/06/JS中的数据类型/</id>
+    <link href="https://zhangjialegh.github.io/2017/02/06/JS%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"/>
+    <id>https://zhangjialegh.github.io/2017/02/06/JS中的数据类型/</id>
     <published>2017-02-05T16:00:00.000Z</published>
     <updated>2020-08-29T13:24:21.977Z</updated>
     
@@ -466,10 +466,10 @@
     
     </summary>
     
-      <category term="js基础" scheme="https://www.zhangjiale.club/categories/js%E5%9F%BA%E7%A1%80/"/>
+      <category term="js基础" scheme="https://zhangjialegh.github.io/categories/js%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="js" scheme="https://www.zhangjiale.club/tags/js/"/>
+      <category term="js" scheme="https://zhangjialegh.github.io/tags/js/"/>
     
   </entry>
   
