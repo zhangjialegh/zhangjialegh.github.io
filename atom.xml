@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>ZJL | BLOG</title>
+  
+  <subtitle>Stay hungry stay foolish</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://www.zhangjiale.club/"/>
+  <updated>2020-08-29T13:24:21.980Z</updated>
+  <id>https://www.zhangjiale.club/</id>
+  
+  <author>
+    <name>zjl</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>微信网页开发</title>
+    <link href="https://www.zhangjiale.club/2019/09/08/%E5%BE%AE%E4%BF%A1%E7%BD%91%E9%A1%B5%E5%BC%80%E5%8F%91/"/>
+    <id>https://www.zhangjiale.club/2019/09/08/微信网页开发/</id>
+    <published>2019-09-07T23:01:00.000Z</published>
+    <updated>2020-08-29T13:24:21.980Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;微信网页授权&quot;&gt;&lt;a href=&quot;#微信网页授权&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="js" scheme="https://www.zhangjiale.club/categories/js/"/>
+    
+    
+      <category term="js" scheme="https://www.zhangjiale.club/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Zlib</title>
+    <link href="https://www.zhangjiale.club/2019/07/10/Zlib/"/>
+    <id>https://www.zhangjiale.club/2019/07/10/Zlib/</id>
+    <published>2019-07-09T22:06:00.000Z</published>
+    <updated>2020-08-29T13:24:21.978Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;zlib&quot;&gt;&lt;a href=&quot;#zlib&quot; class=&quot;headerlink&quot; title=&quot;zlib&quot;&gt;&lt;/a&gt;zlib&lt;/h1&gt;&lt;h2 id=&quot;概览&quot;&gt;&lt;a href=&quot;#概览&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="node" scheme="https://www.zhangjiale.club/categories/node/"/>
+    
+    
+      <category term="node" scheme="https://www.zhangjiale.club/tags/node/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Jest简介</title>
+    <link href="https://www.zhangjiale.club/2019/05/15/Jest%E7%AE%80%E4%BB%8B/"/>
+    <id>https://www.zhangjiale.club/2019/05/15/Jest简介/</id>
+    <published>2019-05-14T20:55:00.000Z</published>
+    <updated>2020-08-29T13:24:21.977Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Jest&quot;&gt;&lt;a href=&quot;#Jest&quot; class=&quot;headerlink&quot; title=&quot;Jest&quot;&gt;&lt;/a&gt;Jest&lt;/h1&gt;&lt;p&gt;jest 是facebook推出的一款测试框架，集成了
+        
+      
+    
+    </summary>
+    
+      <category term="测试" scheme="https://www.zhangjiale.club/categories/%E6%B5%8B%E8%AF%95/"/>
+    
+    
+      <category term="js" scheme="https://www.zhangjiale.club/tags/js/"/>
+    
+      <category term="开发测试" scheme="https://www.zhangjiale.club/tags/%E5%BC%80%E5%8F%91%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>GitHub自动部署</title>
+    <link href="https://www.zhangjiale.club/2019/02/21/GitHub%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/"/>
+    <id>https://www.zhangjiale.club/2019/02/21/GitHub自动部署/</id>
+    <published>2019-02-20T16:19:00.000Z</published>
+    <updated>2020-08-29T13:24:21.977Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;GitHub自动部署代码&quot;&gt;&lt;a href=&quot;#GitHub自动部署代码&quot; class=&quot;headerlink&quot; title=&quot;GitHub自动部署代码&quot;&gt;&lt;/a&gt;GitHub自动部署代码&lt;/h1&gt;&lt;p&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="nodejs" scheme="https://www.zhangjiale.club/categories/nodejs/"/>
+    
+    
+      <category term="nodejs" scheme="https://www.zhangjiale.club/tags/nodejs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>网路基础TCP/IP</title>
+    <link href="https://www.zhangjiale.club/2019/01/11/%E7%BD%91%E8%B7%AF%E5%9F%BA%E7%A1%80TCP-IP/"/>
+    <id>https://www.zhangjiale.club/2019/01/11/网路基础TCP-IP/</id>
+    <published>2019-01-10T21:03:00.000Z</published>
+    <updated>2020-08-29T13:24:21.981Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;网络基础-TCP-IP&quot;&gt;&lt;a href=&quot;#网络基础-TCP-IP&quot; class=&quot;headerlink&quot; title=&quot;网络基础 TCP/IP&quot;&gt;&lt;/a&gt;网络基础 TCP/IP&lt;/h1&gt;&lt;p&gt;为了理解HTTP，我们有必要事先了解一下TCP/IP协议族。
+        
+      
+    
+    </summary>
+    
+      <category term="web技术" scheme="https://www.zhangjiale.club/categories/web%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="web技术" scheme="https://www.zhangjiale.club/tags/web%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Koa中间件的开发和使用</title>
+    <link href="https://www.zhangjiale.club/2018/10/08/koa%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E5%BC%80%E5%8F%91%E5%92%8C%E4%BD%BF%E7%94%A8/"/>
+    <id>https://www.zhangjiale.club/2018/10/08/koa中间件的开发和使用/</id>
+    <published>2018-10-08T12:44:00.000Z</published>
+    <updated>2020-08-29T13:24:21.979Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;koa中间件开发和使用&quot;&gt;&lt;a href=&quot;#koa中间件开发和使用&quot; class=&quot;headerlink&quot; title=&quot;koa中间件开发和使用&quot;&gt;&lt;/a&gt;koa中间件开发和使用&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;koa
+        
+      
+    
+    </summary>
+    
+      <category term="nodejs" scheme="https://www.zhangjiale.club/categories/nodejs/"/>
+    
+    
+      <category term="nodejs" scheme="https://www.zhangjiale.club/tags/nodejs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>迭代器和生成器</title>
+    <link href="https://www.zhangjiale.club/2018/07/08/%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%92%8C%E7%94%9F%E6%88%90%E5%99%A8/"/>
+    <id>https://www.zhangjiale.club/2018/07/08/迭代器和生成器/</id>
+    <published>2018-07-07T23:01:00.000Z</published>
+    <updated>2020-08-29T13:24:21.981Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;迭代器和生成器&quot;&gt;&lt;a href=&quot;#迭代器和生成器&quot; class=&quot;headerlink&quot; title=&quot;迭代器和生成器&quot;&gt;&lt;/a&gt;迭代器和生成器&lt;/h1&gt;&lt;hr&gt;
+&lt;h3 id=&quot;迭代器&quot;&gt;&lt;a href=&quot;#迭代器&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="js" scheme="https://www.zhangjiale.club/categories/js/"/>
+    
+    
+      <category term="js" scheme="https://www.zhangjiale.club/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>深入理解Redux中间件</title>
+    <link href="https://www.zhangjiale.club/2018/07/07/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Redux%E4%B8%AD%E9%97%B4%E4%BB%B6/"/>
+    <id>https://www.zhangjiale.club/2018/07/07/深入理解Redux中间件/</id>
+    <published>2018-07-06T20:26:00.000Z</published>
+    <updated>2020-08-29T13:24:21.981Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;最近几天对 redux 的中间件进行了一番梳理，又看了 redux-saga 的文档，和 redux-thunk 和
+        
+      
+    
+    </summary>
+    
+      <category term="web前端" scheme="https://www.zhangjiale.club/categories/web%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="redux" scheme="https://www.zhangjiale.club/tags/redux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PM2用法简介</title>
+    <link href="https://www.zhangjiale.club/2018/02/20/pm2%E7%94%A8%E6%B3%95%E7%AE%80%E4%BB%8B/"/>
+    <id>https://www.zhangjiale.club/2018/02/20/pm2用法简介/</id>
+    <published>2018-02-19T16:00:00.000Z</published>
+    <updated>2020-08-29T13:24:21.979Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;PM2用法简介&quot;&gt;&lt;a href=&quot;#PM2用法简介&quot; class=&quot;headerlink&quot; title=&quot;PM2用法简介&quot;&gt;&lt;/a&gt;PM2用法简介&lt;/h2&gt;&lt;h3 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="nodejs" scheme="https://www.zhangjiale.club/categories/nodejs/"/>
+    
+    
+      <category term="node" scheme="https://www.zhangjiale.club/tags/node/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>前端性能优化(Css动画篇)</title>
+    <link href="https://www.zhangjiale.club/2017/07/31/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%EF%BC%88css%E5%8A%A8%E7%94%BB%E7%AF%87%EF%BC%89/"/>
+    <id>https://www.zhangjiale.club/2017/07/31/前端性能优化（css动画篇）/</id>
+    <published>2017-07-31T12:46:25.000Z</published>
+    <updated>2020-08-29T13:24:21.980Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;原理&quot;&gt;&lt;a href=&quot;#原理&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="前端性能优化" scheme="https://www.zhangjiale.club/categories/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+    
+    
+      <category term="web前端" scheme="https://www.zhangjiale.club/tags/web%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="css" scheme="https://www.zhangjiale.club/tags/css/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ECMAScript 6</title>
+    <link href="https://www.zhangjiale.club/2017/06/11/ES6part/"/>
+    <id>https://www.zhangjiale.club/2017/06/11/ES6part/</id>
+    <published>2017-06-10T16:00:00.000Z</published>
+    <updated>2020-08-29T13:24:21.977Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Set&quot;&gt;&lt;a href=&quot;#Set&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="js基础" scheme="https://www.zhangjiale.club/categories/js%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="js" scheme="https://www.zhangjiale.club/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Js正则表达式</title>
+    <link href="https://www.zhangjiale.club/2017/06/11/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+    <id>https://www.zhangjiale.club/2017/06/11/正则表达式/</id>
+    <published>2017-06-10T16:00:00.000Z</published>
+    <updated>2020-08-29T13:24:21.980Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;RegExp&quot;&gt;&lt;a href=&quot;#RegExp&quot; class=&quot;headerlink&quot; title=&quot;RegExp&quot;&gt;&lt;/a&gt;RegExp&lt;/h2&gt;&lt;h3 id=&quot;创建正则表达式：&quot;&gt;&lt;a href=&quot;#创建正则表达式：&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="js基础" scheme="https://www.zhangjiale.club/categories/js%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="js" scheme="https://www.zhangjiale.club/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>BOM(浏览器对象模型)</title>
+    <link href="https://www.zhangjiale.club/2017/05/11/BOM/"/>
+    <id>https://www.zhangjiale.club/2017/05/11/BOM/</id>
+    <published>2017-05-10T16:00:00.000Z</published>
+    <updated>2020-08-29T13:24:21.976Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;em&gt;Browser Object Model 浏览器对象模型，它的核心是 window ，同时这个window还是js的顶级对象。&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&quot;window-navigator-userAgent&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="js基础" scheme="https://www.zhangjiale.club/categories/js%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="js" scheme="https://www.zhangjiale.club/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Cookie</title>
+    <link href="https://www.zhangjiale.club/2017/04/20/cookie/"/>
+    <id>https://www.zhangjiale.club/2017/04/20/cookie/</id>
+    <published>2017-04-19T16:00:00.000Z</published>
+    <updated>2020-08-29T13:24:21.979Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;cookie-的构成&quot;&gt;&lt;a href=&quot;#cookie-的构成&quot; class=&quot;headerlink&quot; title=&quot;cookie 的构成&quot;&gt;&lt;/a&gt;cookie
+        
+      
+    
+    </summary>
+    
+      <category term="js基础" scheme="https://www.zhangjiale.club/categories/js%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="js" scheme="https://www.zhangjiale.club/tags/js/"/>
+    
+      <category term="web前端" scheme="https://www.zhangjiale.club/tags/web%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>DOM(文档对象模型)</title>
+    <link href="https://www.zhangjiale.club/2017/03/06/DOM/"/>
+    <id>https://www.zhangjiale.club/2017/03/06/DOM/</id>
+    <published>2017-03-05T16:00:00.000Z</published>
+    <updated>2020-08-29T13:24:21.976Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;##1、概念&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;DOM是针对XML的扩展，应用于HTML的应用程序编程接口API（为了能以编程的方法操作这个 HTML
+        
+      
+    
+    </summary>
+    
+      <category term="js基础" scheme="https://www.zhangjiale.club/categories/js%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="js" scheme="https://www.zhangjiale.club/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>js中Math对象</title>
+    <link href="https://www.zhangjiale.club/2017/02/20/Math%E5%AF%B9%E8%B1%A1/"/>
+    <id>https://www.zhangjiale.club/2017/02/20/Math对象/</id>
+    <published>2017-02-19T16:00:00.000Z</published>
+    <updated>2020-08-29T13:24:21.978Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;常用对象&quot;&gt;&lt;a href=&quot;#常用对象&quot; class=&quot;headerlink&quot; title=&quot;常用对象&quot;&gt;&lt;/a&gt;常用对象&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;Math.PI  &lt;em&gt;（圆周率）&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Math.abs()
+        
+      
+    
+    </summary>
+    
+      <category term="js基础" scheme="https://www.zhangjiale.club/categories/js%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="js" scheme="https://www.zhangjiale.club/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Js中的数据类型</title>
+    <link href="https://www.zhangjiale.club/2017/02/06/JS%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"/>
+    <id>https://www.zhangjiale.club/2017/02/06/JS中的数据类型/</id>
+    <published>2017-02-05T16:00:00.000Z</published>
+    <updated>2020-08-29T13:24:21.977Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;基本数据类型&quot;&gt;&lt;a href=&quot;#基本数据类型&quot; class=&quot;headerlink&quot; title=&quot;基本数据类型&quot;&gt;&lt;/a&gt;基本数据类型&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;null 代表一个空&lt;/li&gt;
+&lt;li&gt;undefined
+        
+      
+    
+    </summary>
+    
+      <category term="js基础" scheme="https://www.zhangjiale.club/categories/js%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="js" scheme="https://www.zhangjiale.club/tags/js/"/>
+    
+  </entry>
+  
+</feed>
